@@ -11068,6 +11068,65 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+
+                <!-- tasza, LM35 demo -->
+		<BlockGenus name="Dec2Bcd" kind="function" color="100 100 255" initlabel="bg.Dec2Bcd">
+			<BlockConnectors>
+				<BlockConnector connector-type="number" connector-kind="plug" />
+				<BlockConnector connector-type="number" connector-kind="socket">
+                                    <DefaultArg genus-name="number" label="99"/>
+                                </BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+                
+		<BlockGenus name="AnalogReference_DEFAULT" kind="data" color="180 180 255" initlabel="bg.AnalogReference_DEFAULT">
+			<BlockConnectors>
+				<BlockConnector connector-type="number" connector-kind="plug" />
+			</BlockConnectors>
+		</BlockGenus>
+                
+		<BlockGenus name="AnalogReference_INTERNAL" kind="data" color="180 180 255" initlabel="bg.AnalogReference_INTERNAL">
+			<BlockConnectors>
+				<BlockConnector connector-type="number" connector-kind="plug" />
+			</BlockConnectors>
+		</BlockGenus>
+                
+		<BlockGenus name="AnalogReference_EXTERNAL" kind="data" color="180 180 255" initlabel="bg.AnalogReference_EXTERNAL">
+			<BlockConnectors>
+				<BlockConnector connector-type="number" connector-kind="plug" />
+			</BlockConnectors>
+		</BlockGenus>
+
+                <BlockGenus name="AnalogReference" kind="command" color="100 100 255" initlabel="bg.AnalogReference">
+			<BlockConnectors>
+				<BlockConnector connector-type="number" connector-kind="socket" label="">
+					<DefaultArg genus-name="AnalogReference_DEFAULT" label="Default UCC"/>
+				</BlockConnector>		
+			</BlockConnectors>
+		</BlockGenus>
+
+                <BlockGenus name="Cd4094Init" kind="command" color="100 100 255" initlabel="bg.Cd4094Init">
+			<BlockConnectors>
+				<BlockConnector connector-type="number" connector-kind="socket" label="strobe">
+					<DefaultArg genus-name="pinListDigital_D2" label="D2"/>
+				</BlockConnector>		
+				<BlockConnector connector-type="number" connector-kind="socket" label="data">
+					<DefaultArg genus-name="pinListDigital_D3" label="D3"/>
+				</BlockConnector>		
+				<BlockConnector connector-type="number" connector-kind="socket" label="clock">
+					<DefaultArg genus-name="pinListDigital_D4" label="D4"/>
+				</BlockConnector>		
+			</BlockConnectors>
+		</BlockGenus>
+                
+                <BlockGenus name="Cd4094Send" kind="command" color="100 100 255" initlabel="bg.Cd4094Send">
+			<BlockConnectors>
+				<BlockConnector connector-type="number" connector-kind="socket" label="BCD number">
+					<DefaultArg genus-name="number" label="00"/>
+				</BlockConnector>		
+			</BlockConnectors>
+		</BlockGenus>
+
 	</BlockGenuses>
 
 <!-- Start of Ardublock Standard UI layout -->
@@ -11718,7 +11777,13 @@
 			<FamilyMember>Midi_AS</FamilyMember>
 			<FamilyMember>Midi_B</FamilyMember>
 		</BlockFamily>
-		
+                
+<!-- tasza -->                
+		<BlockFamily>
+			<FamilyMember>AnalogReference_DEFAULT</FamilyMember>
+			<FamilyMember>AnalogReference_INTERNAL</FamilyMember>
+			<FamilyMember>AnalogReference_EXTERNAL</FamilyMember>
+		</BlockFamily>		
 	</BlockFamilies>
 
 	<BlockDrawerSets>
@@ -11822,6 +11887,7 @@
 				<BlockGenusMember>variable_vector</BlockGenusMember>
 				<BlockGenusMember>setter_variable_vector</BlockGenusMember>
 			</BlockDrawer>
+<!-- tasza, remove
 			<BlockDrawer button-color="205 133 63" name="bd.utilities" type="factory">
 				<BlockGenusMember>servo_default</BlockGenusMember>
 				<BlockGenusMember>ultrasonic</BlockGenusMember>
@@ -11833,6 +11899,7 @@
 				<BlockGenusMember>number-single-I2C-address</BlockGenusMember>
 				<BlockGenusMember>number-single-fixed-parallel</BlockGenusMember>
 			</BlockDrawer>
+-->                        
 			<BlockDrawer button-color="255 255 255" name="bd.communication" type="factory">
 				<BlockGenusMember>serial_write</BlockGenusMember>
 				<BlockGenusMember>serial_print</BlockGenusMember>
@@ -11848,7 +11915,7 @@
 				<BlockGenusMember>serial_available2</BlockGenusMember>
 				<BlockGenusMember>serial_read</BlockGenusMember>
 				<BlockGenusMember>serial_parseInt</BlockGenusMember>
-				<BlockGenusMember>DuinoEDU_Guino_Read</BlockGenusMember>
+<!-- tasza, remove		<BlockGenusMember>DuinoEDU_Guino_Read</BlockGenusMember>
 				<BlockGenusMember>DuinoEDU_Guino_Slider</BlockGenusMember>
 				<BlockGenusMember>DuinoEDU_Guino_switch</BlockGenusMember>
 				<BlockGenusMember>DuinoEDU_Guino_pause</BlockGenusMember>
@@ -11857,11 +11924,13 @@
 				<BlockGenusMember>DuinoEDU_hand_positionX</BlockGenusMember>
 				<BlockGenusMember>DuinoEDU_handRotX</BlockGenusMember>
 				<BlockGenusMember>DuinoEDU_angle_pouce</BlockGenusMember>
+-->
 				<BlockGenusMember>Serialplus_send_variable_number</BlockGenusMember>
 				<BlockGenusMember>Serialplus_send_variable_digital</BlockGenusMember>
 				<BlockGenusMember>Serialplus_receive_number</BlockGenusMember>
 				<BlockGenusMember>Serialplus_receive_digital</BlockGenusMember>
 			</BlockDrawer>
+<!-- tasza, remove                         
 			<BlockDrawer button-color="26 97 218" name="bd.scoop">
 			    <BlockGenusMember>scoop_task</BlockGenusMember>
 				<BlockGenusMember>scoop_loop</BlockGenusMember>
@@ -11886,24 +11955,24 @@
 				<BlockGenusMember>MaSD_Write</BlockGenusMember>
 				<BlockGenusMember>MaSD_NewLine</BlockGenusMember>
 				<BlockGenusMember>MaSD_separator</BlockGenusMember>
-				<!-- <BlockGenusMember>sd_write</BlockGenusMember> -->
-				<!-- <BlockGenusMember>sd_write_number</BlockGenusMember> -->
-				<!-- <BlockGenusMember>sd_write_number_int</BlockGenusMember> -->
-			</BlockDrawer>
+                        </BlockDrawer>
 			<BlockDrawer button-color="169 148 212" name="bd.network" type="factory">
 				<BlockGenusMember>bleshield</BlockGenusMember>
 				<BlockGenusMember>bleshield_available</BlockGenusMember>
 				<BlockGenusMember>bleshield_read_poly</BlockGenusMember>
 				<BlockGenusMember>bleshield_compare</BlockGenusMember>
 			</BlockDrawer>
+-->
 			<BlockDrawer button-color="120 120 120" name="bd.especial" type="factory">
 				<BlockGenusMember>code_head</BlockGenusMember>
 				<BlockGenusMember>code_setup</BlockGenusMember>
 				<BlockGenusMember>code_loop</BlockGenusMember>
-				<BlockGenusMember>DuinoEDU_code_head</BlockGenusMember>
+<!-- tasza, remove				<BlockGenusMember>DuinoEDU_code_head</BlockGenusMember>
 				<BlockGenusMember>DuinoEDU_code_setup</BlockGenusMember>
 				<BlockGenusMember>DuinoEDU_code_loop</BlockGenusMember>
+-->                                
 			</BlockDrawer>
+<!--                        
 			<BlockDrawer button-color="13 152 164" name="bd.tinkerkit" type="factory">
 				<BlockGenusMember>Tinker_LED</BlockGenusMember>
 				<BlockGenusMember>Tinker_LED_pwm</BlockGenusMember>
@@ -12147,6 +12216,7 @@
 				<BlockGenusMember>me_motor_1</BlockGenusMember>
 				<BlockGenusMember>me_shutter_1</BlockGenusMember>
 			</BlockDrawer>
+-->                        
 			<!-- 
 			<BlockDrawer button-color="225 116 116" name="bd.workshop" type="factory">
 			    <BlockGenusMember>ws_setting</BlockGenusMember>
@@ -12167,6 +12237,7 @@
 				<BlockGenusMember>ws_binoculars</BlockGenusMember>
 			</BlockDrawer>
 			 -->
+<!-- tasza , remove                          
 			<BlockDrawer button-color="64 109 0" name="bd.insectbot">
 			    <BlockGenusMember>insectbot_get_distance</BlockGenusMember>
 			    <BlockGenusMember>insectbot_is_indanger</BlockGenusMember>
@@ -12175,8 +12246,10 @@
 			    <BlockGenusMember>insectbot_turn_left</BlockGenusMember>
 			    <BlockGenusMember>insectbot_blink_led</BlockGenusMember>
 			</BlockDrawer>
+-->                        
 			<!-- iDrawing -->
-			<BlockDrawer button-color="255 102 0" name="bd.iDrawing">
+<!-- tasza, remove 
+                        <BlockDrawer button-color="255 102 0" name="bd.iDrawing">
 			    <BlockGenusMember>iDrawing_set_para</BlockGenusMember>
 			    <BlockGenusMember>iDrawing_run</BlockGenusMember>
 			    <BlockGenusMember>iDrawing_rule_start</BlockGenusMember>
@@ -12204,7 +12277,9 @@
 			    <BlockGenusMember>trigger_greater</BlockGenusMember>
 			    <BlockGenusMember>trigger_less</BlockGenusMember>		    
 			</BlockDrawer>
+-->                        
 			<!-- littlebits -->
+<!-- tasza, remove                         
 			<BlockDrawer button-color="93 13 125" name="bd.littlebits">
 			    <BlockGenusMember>little_bits_bendsensor</BlockGenusMember>
 			    <BlockGenusMember>little_bits_button</BlockGenusMember>
@@ -12239,6 +12314,7 @@
 			    <BlockGenusMember>little_bits_vibration_motor</BlockGenusMember>
 			    <BlockGenusMember>little_bits_synthspeaker</BlockGenusMember>
 			</BlockDrawer>
+-->                        
 			<!-- dbrobot bluno Causes warning "Invalid Drawer: trying to add a drawer that already exists: DFRobot" -->
 <!-- 			<BlockDrawer button-color="255 102 0" name="bd.dfrobot" type="factory"> -->
 <!-- 				<BlockGenusMember>bluno_println</BlockGenusMember> -->
@@ -12248,7 +12324,8 @@
 <!-- 				<BlockGenusMember>df_romeo_motor</BlockGenusMember> -->
 <!-- 				<BlockGenusMember>df_romeo_motor_stop</BlockGenusMember> -->
 <!-- 			</BlockDrawer> 	 -->
-			<!-- keenlon -->			
+			<!-- keenlon -->
+<!-- tasza, remove                        			
 			<BlockDrawer button-color="20 150 30" name="bd.ke-keenlon">
 				<BlockGenusMember>ke-motor-run</BlockGenusMember>
 				<BlockGenusMember>ke-motor-setmoto</BlockGenusMember>	
@@ -12280,8 +12357,8 @@
 
 			<BlockDrawer button-color="152 29 155" name="bd.jerusalab" type="factory">
 				<BlockGenusMember>midi_command</BlockGenusMember>
-				<!-- <BlockGenusMember>midi_note</BlockGenusMember> -->
 			</BlockDrawer>
+-->                        
 			<!--
 			<BlockDrawer button-color="135 206 235" name="bd.linksprite_LinkerKit">
 				<BlockGenusMember>ls_10mmLEDModule</BlockGenusMember>
@@ -12319,6 +12396,14 @@
 			-->
 			<!-- Shapes are automatically loaded as blocks in the Shapes drawer (see slcodeblocks.ShapeBlocksGenerator for details) -->
 			<!-- Sound blocks reside in the auto-generated String drawer. (see slcodeblocks.SoundBlocksGenerator for details) -->
+<!-- tasza, my own blocks here :) -->       
+                    <BlockDrawer button-color="200 200 255" name="bd.LM35demo" type="factory">
+        		<BlockGenusMember>Dec2Bcd</BlockGenusMember>
+                        <BlockGenusMember>AnalogReference</BlockGenusMember>
+                        <BlockGenusMember>Cd4094Init</BlockGenusMember>
+                        <BlockGenusMember>Cd4094Send</BlockGenusMember>                        
+                    </BlockDrawer>                 
+<!-- tasza, done --> 
 		</BlockDrawerSet>
 	</BlockDrawerSets>
 	

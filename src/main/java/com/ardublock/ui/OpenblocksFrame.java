@@ -122,7 +122,7 @@ public class OpenblocksFrame extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				Dimension size = workspace.getCanvasSize();
 				System.out.println("size: " + size);
-				BufferedImage bi = new BufferedImage(2560, 2560, BufferedImage.TYPE_INT_RGB);
+				BufferedImage bi = new BufferedImage(2560*2, 2560*2, BufferedImage.TYPE_INT_RGB);
 				Graphics2D g = (Graphics2D)bi.createGraphics();
 				double theScaleFactor = (300d/72d);  
 				g.scale(theScaleFactor,theScaleFactor);
